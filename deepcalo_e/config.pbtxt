@@ -1,6 +1,6 @@
 name: "deepcalo_e"
 platform: "tensorflow_graphdef"
-max_batch_size: 128
+max_batch_size: 16384
 input [
   {
     name: "em_barrel"
@@ -18,10 +18,10 @@ output [
 instance_group [
   {
     kind: KIND_GPU,
-    count: 2
+    count: 5
   }
 ]
 dynamic_batching {
-  preferred_batch_size: [ 4, 8 ]
+  preferred_batch_size: [ 250, 500]
   max_queue_delay_microseconds: 100
 }
