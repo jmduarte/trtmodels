@@ -1,0 +1,28 @@
+name: "particleflow"
+platform: "tensorflow_graphdef"
+max_batch_size: 1
+input [
+  {
+    name: "x"
+    data_type: TYPE_FP32
+    dims: [ 1000, 15 ]
+  }
+]
+output [
+  {
+    name: "Identity"
+    data_type: TYPE_FP32
+    dims: [ 1000, 12 ]
+  }
+]
+instance_group [
+  {
+    kind: KIND_GPU,
+    count: 1
+  }
+]
+dynamic_batching {
+  preferred_batch_size: [ 1 ]
+  max_queue_delay_microseconds: 100
+}
+
